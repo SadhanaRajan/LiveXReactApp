@@ -38,6 +38,9 @@ npm run preview
 -   `npm run dev` – starts Vite dev server with hot module replacement.
 -   `npm run build` – generates a production build inside `dist`.
 -   `npm run preview` – serves the production build locally for quick verification.
+-   `npm run test` – executes the Vitest suite (React Testing Library) in CI-friendly mode.
+-   `npm run test:watch` – runs Vitest in watch mode for local development.
+-   `npm run test:e2e` – launches Playwright smoke tests against a dev server.
 
 ### Feature Notes
 
