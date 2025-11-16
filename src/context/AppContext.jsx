@@ -2,9 +2,19 @@ import { createContext, useContext, useMemo, useState } from 'react';
 import { pages } from '../data/pages.js';
 
 const AppContext = createContext();
+const defaultContent = {
+  title: 'Content unavailable',
+  paragraphs: []
+};
+
+const getInitialPage = () => {
+  if (pages.apps) return 'apps';
+  const [firstKey] = Object.keys(pages);
+  return firstKey ?? 'apps';
+};
 
 export const AppProvider = ({ children }) => {
-  const [activePage, setActivePage] = useState('apps');
+  const [activePage, setActivePage] = useState(getInitialPage());
   const [searchTerm, setSearchTerm] = useState('');
 
   const value = useMemo(
@@ -13,7 +23,7 @@ export const AppProvider = ({ children }) => {
       setActivePage,
       searchTerm,
       setSearchTerm,
-      content: pages[activePage],
+      content: pages[activePage] ?? defaultContent,
       pages
     }),
     [activePage, searchTerm]

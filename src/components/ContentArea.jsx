@@ -3,11 +3,24 @@ import { useAppContext } from '../context/AppContext.jsx';
 
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
-const createMarkup = (text, query) => {
-  if (!query) return { __html: text };
+const highlightText = (text, query) => {
+  if (!query) {
+    return [text];
+  }
+
   const safeQuery = escapeRegExp(query);
   const regex = new RegExp(`(${safeQuery})`, 'gi');
-  return { __html: text.replace(regex, '<mark>$1</mark>') };
+  const parts = text.split(regex);
+
+  return parts.map((part, index) => {
+    if (part === '') return null;
+    const key = `${part}-${index}`;
+    return index % 2 === 1 ? (
+      <mark key={key}>{part}</mark>
+    ) : (
+      <span key={key}>{part}</span>
+    );
+  });
 };
 
 const ContentArea = () => {
@@ -28,10 +41,9 @@ const ContentArea = () => {
       <div className="paragraphs">
         {filteredParagraphs.length ? (
           filteredParagraphs.map((paragraph, index) => (
-            <p
-              key={`${content.title}-${index}`}
-              dangerouslySetInnerHTML={createMarkup(paragraph, searchTerm)}
-            />
+            <p key={`${content.title}-${index}`}>
+              {highlightText(paragraph, searchTerm)}
+            </p>
           ))
         ) : (
           <p className="empty-state">No paragraphs match your search.</p>

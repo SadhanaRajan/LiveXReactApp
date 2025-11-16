@@ -24,6 +24,7 @@ export const useChatbot = () => {
   const [input, setInput] = useState('');
   const [elapsedSeconds, setElapsedSeconds] = useState(0);
   const timerRef = useRef(null);
+  const pendingResponsesRef = useRef([]);
 
   const stopTimer = useCallback(() => {
     if (timerRef.current) {
@@ -39,6 +40,11 @@ export const useChatbot = () => {
     }, 1000);
   }, [stopTimer]);
 
+  const clearPendingResponses = useCallback(() => {
+    pendingResponsesRef.current.forEach((timeoutId) => clearTimeout(timeoutId));
+    pendingResponsesRef.current = [];
+  }, []);
+
   useEffect(() => {
     if (isOpen) {
       setElapsedSeconds(0);
@@ -46,10 +52,14 @@ export const useChatbot = () => {
     } else {
       stopTimer();
       setElapsedSeconds(0);
+      clearPendingResponses();
     }
 
-    return stopTimer;
-  }, [isOpen, startTimer, stopTimer]);
+    return () => {
+      stopTimer();
+      clearPendingResponses();
+    };
+  }, [clearPendingResponses, isOpen, startTimer, stopTimer]);
 
   const toggleChat = () => {
     setIsOpen((state) => !state);
@@ -58,11 +68,13 @@ export const useChatbot = () => {
   const closeChat = () => {
     setIsOpen(false);
     setElapsedSeconds(0);
+    clearPendingResponses();
   };
 
   const resetChat = () => {
     setMessages([]);
     setElapsedSeconds(0);
+    clearPendingResponses();
   };
 
   const sendMessage = () => {
@@ -79,7 +91,7 @@ export const useChatbot = () => {
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
 
-    setTimeout(() => {
+    const timeoutId = setTimeout(() => {
       const botMessage = {
         id: createId(),
         from: 'bot',
@@ -87,7 +99,12 @@ export const useChatbot = () => {
         createdAt: new Date().toISOString()
       };
       setMessages((prev) => [...prev, botMessage]);
+      pendingResponsesRef.current = pendingResponsesRef.current.filter(
+        (id) => id !== timeoutId
+      );
     }, 600);
+
+    pendingResponsesRef.current.push(timeoutId);
   };
 
   const handleKeyDown = (event) => {
