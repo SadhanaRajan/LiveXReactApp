@@ -9,15 +9,26 @@ A small React single-page app that meets the requirements from `FRONTEND.md`: st
 - **Pure CSS** (no utility frameworks) keeps the footprint minimal while satisfying responsive requirements.
 
 ### Getting Started
-1. **Install dependencies**
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/SadhanaRajan/LiveXReactApp.git
+   cd LiveXReactApp
+   ```
+2. **Install dependencies** (Node.js 18+ recommended)
    ```bash
    npm install
    ```
-2. **Start the dev server**
+3. **Start the dev server**
    ```bash
    npm run dev
    ```
-3. Open the printed URL (defaults to `http://localhost:5173`) to interact with the UI.
+4. Open the printed URL (defaults to `http://localhost:5173`) to interact with the UI.
+
+For a one-off production preview instead of the dev server:
+```bash
+npm run build
+npm run preview
+```
 
 ### Available Scripts
 - `npm run dev` – starts Vite dev server with hot module replacement.
