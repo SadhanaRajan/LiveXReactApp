@@ -42,7 +42,7 @@ export const AppProvider = ({ children }) => {
       content: pages[activePage] ?? defaultContent,
       pages
     }),
-    [activePage, searchTerm]
+    [activePage, resetToInitialPage, searchTerm]
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

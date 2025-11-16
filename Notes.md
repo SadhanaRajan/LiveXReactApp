@@ -14,7 +14,11 @@
 1. Fun stuff:
    * Tapping on Logo will take you to the first landing page, App page in this case.
    * Textarea in Chatbot autofocuses whenever the chat window becomes visible, letting users type immediately, while keeping the scroll behavior intact.
-   
+1. Added ESLint/Prettier hooks to keep the codebase tidy
+   * Installed `prettier husky lint-staged`
+   * Installed `eslint-plugin-react eslint-plugin-react-hooks`
+
+
 
 
 
@@ -23,4 +27,4 @@
 1. Expandable data model: Right now the two pages are hard-coded. Move page content to a CMS or JSON fetched on load so product folks can add categories without touching code, and show a graceful loading/error state.
 1. Search UX polish: For large payloads, consider Web Workers or server-backed search.
 1. Chatbot fidelity: Persist conversation to localStorage/session so a refresh doesn’t erase history, display timestamps/avatars, and add typing indicators. Hook up to a simple backend endpoint if you want more realistic replies.
-1. Performance & bundle health: Split the chatbot into a lazy-loaded chunk and run Lighthouse/React Profiler to check hydration and CPU use on low-end devices; add ESLint/Prettier hooks to keep the codebase tidy.
+1. Performance & bundle health: Split the chatbot into a lazy-loaded chunk and run Lighthouse/React Profiler to check hydration and CPU use on low-end devices;

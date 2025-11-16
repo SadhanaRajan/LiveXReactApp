@@ -11,7 +11,6 @@ const Navbar = () => {
   const [inputValue, setInputValue] = useState(searchTerm);
   const debouncedSearch = useDebounce(inputValue, SEARCH_DEBOUNCE_MS);
   const searchInputRef = useRef(null);
-  const paragraphs = content?.paragraphs ?? [];
 
   useEffect(() => {
     setInputValue(searchTerm);
@@ -60,6 +59,7 @@ const Navbar = () => {
   }, []);
 
   const matchCount = useMemo(() => {
+    const paragraphs = content?.paragraphs ?? [];
     const query = searchTerm.trim();
     if (!query) {
       return 0;
@@ -70,7 +70,7 @@ const Navbar = () => {
       const matches = paragraph.match(regex);
       return sum + (matches ? matches.length : 0);
     }, 0);
-  }, [paragraphs, searchTerm]);
+  }, [content, searchTerm]);
 
   const showMatchCount = searchTerm.trim().length > 0;
 
