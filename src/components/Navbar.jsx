@@ -6,7 +6,8 @@ const SEARCH_DEBOUNCE_MS = 250;
 const escapeRegExp = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
 const Navbar = () => {
-  const { searchTerm, setSearchTerm, content } = useAppContext();
+  const { searchTerm, setSearchTerm, resetToInitialPage, content } =
+    useAppContext();
   const [inputValue, setInputValue] = useState(searchTerm);
   const debouncedSearch = useDebounce(inputValue, SEARCH_DEBOUNCE_MS);
   const searchInputRef = useRef(null);
@@ -20,8 +21,11 @@ const Navbar = () => {
     if (debouncedSearch === searchTerm) {
       return;
     }
+    if (debouncedSearch !== inputValue) {
+      return;
+    }
     setSearchTerm(debouncedSearch);
-  }, [debouncedSearch, searchTerm, setSearchTerm]);
+  }, [debouncedSearch, inputValue, searchTerm, setSearchTerm]);
 
   useEffect(() => {
     const handleShortcut = (event) => {
@@ -70,11 +74,22 @@ const Navbar = () => {
 
   const showMatchCount = searchTerm.trim().length > 0;
 
+  const handleLogoClick = () => {
+    resetToInitialPage();
+    setInputValue('');
+    setSearchTerm('');
+  };
+
   return (
     <header className="navbar">
-      <div className="logo" aria-label="Site logo">
+      <button
+        type="button"
+        className="logo"
+        aria-label="Site logo"
+        onClick={handleLogoClick}
+      >
         Logo
-      </div>
+      </button>
       <div className="search-bar">
         <input
           ref={searchInputRef}

@@ -11,6 +11,10 @@
    * Installed `vitest @testing-library/react @testing-library/jest-dom @testing-library/user-event @playwright/test`
    * Vitest requires `jsdom` package for the configured browser-like test environment. So installed `jsdom`
    * Run `npx playwright install` (once) to download browsers, then execute `npm run test:e2e`
+1. Fun stuff:
+   * Tapping on Logo will take you to the first landing page, App page in this case.
+   * Textarea in Chatbot autofocuses whenever the chat window becomes visible, letting users type immediately, while keeping the scroll behavior intact.
+   
 
 
 

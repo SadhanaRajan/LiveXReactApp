@@ -1,4 +1,11 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState
+} from 'react';
 import { pages } from '../data/pages.js';
 
 const AppContext = createContext();
@@ -21,10 +28,15 @@ export const AppProvider = ({ children }) => {
     setSearchTerm('');
   }, [activePage]);
 
+  const resetToInitialPage = useCallback(() => {
+    setActivePage(getInitialPage());
+  }, []);
+
   const value = useMemo(
     () => ({
       activePage,
       setActivePage,
+      resetToInitialPage,
       searchTerm,
       setSearchTerm,
       content: pages[activePage] ?? defaultContent,
