@@ -17,12 +17,19 @@ const Chatbot = () => {
   } = useChatbot();
 
   const messageEndRef = useRef(null);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     if (messageEndRef.current) {
       messageEndRef.current.scrollTop = messageEndRef.current.scrollHeight;
     }
   }, [messages]);
+
+  useEffect(() => {
+    if (isOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isOpen]);
 
   return (
     <div className="chatbot">
@@ -75,6 +82,7 @@ const Chatbot = () => {
             }}
           >
             <textarea
+              ref={inputRef}
               rows={2}
               placeholder="Type your message..."
               value={input}
