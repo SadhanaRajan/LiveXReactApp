@@ -1,4 +1,4 @@
-## LiveX React Chatbot
+## Test Chatbot React App
 
 A small React single-page app that meets the requirements from `FRONTEND.md`: sticky navbar with a search bar, contextual side menu, scrollable content panes, chatbot with mock responses, and live text filtering with highlighting.
 
@@ -13,8 +13,8 @@ A small React single-page app that meets the requirements from `FRONTEND.md`: st
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/SadhanaRajan/LiveXReactApp.git
-    cd LiveXReactApp
+    git clone https://github.com/SadhanaRajan/TestChatbotReactApp.git
+    cd TestChatbotReactApp
     ```
 2. **Install dependencies** (Node.js 18+ recommended)
     ```bash
