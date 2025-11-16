@@ -1,0 +1,271 @@
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  min-height: 64px;
+  background-color: #0f172a;
+  color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.search-bar {
+  flex: 1;
+  max-width: 360px;
+  margin-left: 2rem;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 999px;
+  border: none;
+}
+
+.app-main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.side-menu {
+  width: 220px;
+  background-color: #e2e8f0;
+  padding: 1rem 0.5rem;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.menu-item {
+  width: 100%;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.menu-item.active,
+.menu-item:hover {
+  background-color: #cbd5f5;
+  color: #0f172a;
+}
+
+.content-area {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: #f8fafc;
+}
+
+.content-area h1 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-bottom: 3rem;
+}
+
+.paragraphs p {
+  margin: 0;
+  line-height: 1.7;
+  background-color: #fff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+}
+
+mark {
+  background-color: #fde047;
+  padding: 0 0.15rem;
+  border-radius: 0.25rem;
+}
+
+.empty-state {
+  color: #64748b;
+  text-align: center;
+}
+
+.chatbot {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 20;
+}
+
+.chatbot-trigger {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+}
+
+.chat-window {
+  position: fixed;
+  bottom: 5rem;
+  right: 1.5rem;
+  width: 400px;
+  height: 600px;
+  background-color: #fff;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+}
+
+.chat-header {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.chat-timer {
+  font-size: 0.875rem;
+  color: #475569;
+}
+
+.chat-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.ghost {
+  background: transparent;
+  border: 1px solid #cbd5f5;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.75rem;
+  color: #0f172a;
+}
+
+.chat-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #f8fafc;
+}
+
+.message-row {
+  display: flex;
+  margin-bottom: 0.75rem;
+}
+
+.message-row.bot {
+  justify-content: flex-start;
+}
+
+.message-row.user {
+  justify-content: flex-end;
+}
+
+.bubble {
+  max-width: 75%;
+  padding: 0.6rem 0.9rem;
+  border-radius: 1rem;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.message-row.bot .bubble {
+  background-color: #e2e8f0;
+  border-bottom-left-radius: 0.25rem;
+}
+
+.message-row.user .bubble {
+  background-color: #2563eb;
+  color: #fff;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.chat-input {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.chat-input textarea {
+  flex: 1;
+  resize: none;
+  border-radius: 0.75rem;
+  border: 1px solid #cbd5f5;
+  padding: 0.5rem;
+  min-height: 48px;
+}
+
+.primary {
+  background-color: #0f172a;
+  color: #fff;
+  border: none;
+  border-radius: 0.75rem;
+  padding: 0 1rem;
+}
+
+@media (max-width: 768px) {
+  .app-main {
+    flex-direction: column;
+  }
+
+  .side-menu {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .side-menu ul {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 600px) {
+  .chat-window {
+    width: 100vw;
+    height: 100vh;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+  }
+
+  .chatbot {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .content-area {
+    padding: 1rem;
+  }
+}
