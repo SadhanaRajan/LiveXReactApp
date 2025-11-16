@@ -24,14 +24,18 @@
 
 .search-bar {
   flex: 1;
-  max-width: 360px;
+  max-width: 420px;
   margin-left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .search-bar input {
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 0.5rem 0.75rem;
-  border-radius: 999px;
+  border-radius: 0.75rem;
   border: 1px solid #94a3b8;
   background-color: #fff;
   color: #0f172a;
@@ -40,6 +44,13 @@
 
 .search-bar input::placeholder {
   color: #475569;
+}
+
+.search-match-count {
+  min-width: 80px;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #e2e8f0;
 }
 
 .app-main {
