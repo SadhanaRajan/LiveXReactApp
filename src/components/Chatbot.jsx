@@ -59,7 +59,14 @@ const Chatbot = () => {
             </div>
           </header>
 
-          <div className="chat-messages" ref={messageEndRef}>
+          <div
+            className="chat-messages"
+            ref={messageEndRef}
+            role="log"
+            aria-live="polite"
+            aria-atomic="false"
+            aria-label="Chat messages"
+          >
             {messages.length === 0 ? (
               <p className="empty-state">Start the conversation by saying hi!</p>
             ) : (

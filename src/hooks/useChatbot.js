@@ -108,7 +108,15 @@ export const useChatbot = () => {
   };
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    const isPlainEnter =
+      event.key === 'Enter' &&
+      !event.shiftKey &&
+      !event.ctrlKey &&
+      !event.metaKey;
+    const isModifierEnter =
+      event.key === 'Enter' && (event.ctrlKey || event.metaKey);
+
+    if (isPlainEnter || isModifierEnter) {
       event.preventDefault();
       sendMessage();
     }

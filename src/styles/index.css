@@ -5,6 +5,8 @@
   font-weight: 400;
   color: #0f172a;
   background-color: #f8fafc;
+  --focus-ring-color: #facc15;
+  --focus-ring-shadow: 0 0 0 3px rgba(250, 204, 21, 0.45);
 }
 
 *,
@@ -31,4 +33,12 @@ button {
 input,
 textarea {
   font: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring-shadow);
+  border-color: #1d4ed8;
 }
